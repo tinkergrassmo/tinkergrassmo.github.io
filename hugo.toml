@@ -1,0 +1,43 @@
+baseURL = 'https://tinkergrassmo.github.io/'
+title = 'Tinkergrass'
+
+# Set up theme module
+[module]
+[[module.imports]]
+path = "github.com/google/docsy"
+disable = false
+
+# Goldmark settings for Docsy
+[markup.goldmark.renderer]
+unsafe = true
+
+[params]
+copyright = "Tinkergrass"
+privacy_policy = "https://policies.google.com/privacy"
+
+# --- UI Configuration (Crucial for the dark mode look) ---
+[params.ui]
+# This enables the dark/light mode switcher.
+# To strictly enforce dark mode like the rendering, you might need
+# custom CSS or theme configuration, but this gets you close.
+darkModeMenu = true
+
+# --- Top Navigation Menu (Tabs) ---
+# This defines the four tabs seen in the rendering.
+[menu]
+[[menu.main]]
+name = "About"
+weight = 10
+url = "/about/"
+[[menu.main]]
+name = "Planning"
+weight = 20
+url = "/planning/"
+[[menu.main]]
+name = "Resources"
+weight = 30
+url = "/resources/"
+[[menu.main]]
+name = "Contact"
+weight = 40
+url = "/contact/"
