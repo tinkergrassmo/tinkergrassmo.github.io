@@ -105,3 +105,25 @@ h6 {
         border-bottom-color: #81C784;
     }
 }
+
+html[lang="en"] [lang="zh-Hant"],
+html[lang="zh-Hant"] [lang="en"] {
+    display: none !important;
+}
+
+.language-toggle {
+    margin-top: 1rem;
+    padding: 0.45rem 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    border-radius: 4px;
+    background: rgba(8, 20, 28, 0.64);
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+}
+
+.language-toggle:hover,
+.language-toggle:focus-visible {
+    background: #fff;
+    color: #17232b;
+}

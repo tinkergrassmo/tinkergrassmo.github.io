@@ -26,10 +26,10 @@ darkModeMenu = true
 # This defines the four tabs seen in the rendering.
 [menu]
 [[menu.main]]
-name = "Home | 首頁"
+name = "Home"
 weight = 10
 url = "/"
 [[menu.main]]
-name = "About | 關於"
+name = "About"
 weight = 20
 url = "/about/"
