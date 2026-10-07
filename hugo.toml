@@ -26,18 +26,10 @@ darkModeMenu = true
 # This defines the four tabs seen in the rendering.
 [menu]
 [[menu.main]]
-name = "About"
+name = "Home | 首頁"
 weight = 10
-url = "/about/"
+url = "/"
 [[menu.main]]
-name = "Planning"
+name = "About | 關於"
 weight = 20
-url = "/planning/"
-[[menu.main]]
-name = "Resources"
-weight = 30
-url = "/resources/"
-[[menu.main]]
-name = "Contact"
-weight = 40
-url = "/contact/"
+url = "/about/"
