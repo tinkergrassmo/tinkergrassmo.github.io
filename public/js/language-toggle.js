@@ -40,13 +40,17 @@
 
         const description = document.querySelector('meta[name="description"]');
         const pageDescriptions = localizedDescriptions[location.pathname];
-        if (description && pageDescriptions) description.content = pageDescriptions[selected];
+        if (pageDescriptions) {
+            if (description) description.content = pageDescriptions[selected];
+            const visibleDescription = document.querySelector(".td-content > .lead");
+            if (visibleDescription) visibleDescription.textContent = pageDescriptions[selected];
+        }
 
         document.title = selected === "en" ? "Tinkergrass" : "元野有限公司";
         localStorage.setItem(storageKey, selected);
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
+    function initializeLanguageToggle() {
         applyLanguage(localStorage.getItem(storageKey) || "en");
 
         document.querySelectorAll("[data-language-toggle]").forEach((button) => {
@@ -54,5 +58,11 @@
                 applyLanguage(document.documentElement.lang === "en" ? "zh-Hant" : "en");
             });
         });
-    });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initializeLanguageToggle, { once: true });
+    } else {
+        initializeLanguageToggle();
+    }
 })();
