@@ -33,3 +33,7 @@ url = "/"
 name = "About"
 weight = 20
 url = "/about/"
+[[menu.main]]
+name = "Contact"
+weight = 30
+url = "/contact/"

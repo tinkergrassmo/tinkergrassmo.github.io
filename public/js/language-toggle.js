@@ -4,6 +4,7 @@
     const localizedNavigation = {
         "/": { en: "Home", "zh-Hant": "首頁" },
         "/about/": { en: "About", "zh-Hant": "關於" },
+        "/contact/": { en: "Contact", "zh-Hant": "聯絡我們" },
     };
     const localizedDescriptions = {
         "/": {
@@ -13,6 +14,10 @@
         "/about/": {
             en: "Tinkergrass and its robotics-centered industrial ecosystem.",
             "zh-Hant": "元野有限公司與機器人工業生態系統。",
+        },
+        "/contact/": {
+            en: "Contact Tinkergrass.",
+            "zh-Hant": "聯絡元野有限公司。",
         },
     };
 
@@ -36,6 +41,8 @@
         const pageTitle = document.querySelector(".td-content > h1");
         if (pageTitle && location.pathname.startsWith("/about")) {
             pageTitle.textContent = selected === "en" ? "About Tinkergrass" : "關於元野有限公司";
+        } else if (pageTitle && location.pathname.startsWith("/contact")) {
+            pageTitle.textContent = selected === "en" ? "Contact" : "聯絡我們";
         }
 
         const description = document.querySelector('meta[name="description"]');
@@ -46,11 +53,19 @@
             if (visibleDescription) visibleDescription.textContent = pageDescriptions[selected];
         }
 
-        document.title = selected === "en" ? "Tinkergrass" : "元野有限公司";
+        document.title = location.pathname.startsWith("/contact")
+            ? (selected === "en" ? "Contact | Tinkergrass" : "聯絡我們 | 元野有限公司")
+            : (selected === "en" ? "Tinkergrass" : "元野有限公司");
         localStorage.setItem(storageKey, selected);
     }
 
     function initializeLanguageToggle() {
+        const toggle = document.querySelector("[data-language-toggle]");
+        const navbar = document.querySelector(".td-navbar");
+        if (toggle && navbar && !navbar.contains(toggle)) {
+            navbar.append(toggle);
+        }
+
         applyLanguage(localStorage.getItem(storageKey) || "en");
 
         document.querySelectorAll("[data-language-toggle]").forEach((button) => {
