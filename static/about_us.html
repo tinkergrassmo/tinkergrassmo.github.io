@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Tinkergrass</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            /* Very light slate for a clean background */
+        }
+
+        html[lang="en"] [lang="zh-Hant"],
+        html[lang="zh-Hant"] [lang="en"] {
+            display: none !important;
+        }
+
+        /* Specific Print Optimizations */
+        @page {
+            size: A4;
+            margin: 10mm;
+            /* Minimal margins to maximize content space */
+        }
+
+        @media print {
+            body {
+                background-color: white !important;
+                /* Save ink */
+            }
+
+            /* Ensures images and colors print clearly */
+            * {
+                color: #1f1f1f !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        p {
+            text-indent: 20px;
+            /* Adjust the value (px, em, or %) as needed */
+        }
+    </style>
+</head>
+
+<body class="text-slate-800 antialiased">
+
+    <!-- Main Container: Reduced vertical padding -->
+    <main class="max-w-6xl mx-auto px-6 py-8 print:py-0 print:px-0">
+
+        <!-- Page Title: Reduced bottom margin -->
+        <header class="text-center mb-8 print:mb-4">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-2"><span lang="en">About
+                    Us</span><span lang="zh-Hant">關於我們</span></h1>
+            <div class="h-1 w-20 bg-indigo-600 mx-auto rounded-full"></div>
+        </header>
+
+        <!-- Intro Paragraphs Section: Tighter spacing between paragraphs and below section -->
+        <section
+            class="max-w-3xl mx-auto space-y-4 print:space-y-2 mb-10 print:mb-6 text-lg leading-relaxed text-slate-600">
+            <div>
+                <p>
+                    <span lang="en">We earned PhDs in Robotics from Cornell University and have spent more than a decade
+                        developing robotics hardware and software in Silicon Valley and other leading technology hubs.
+                        From taking technologies from zero to one at startups to scaling products and bringing them to
+                        market at multinational companies and technology leaders such as Johnson &amp; Johnson and
+                        Intrinsic (Alphabet), our work spans surgical robotics, smart agriculture, industrial
+                        manufacturing, and service robotics. We bring this experience from academia and industry
+                        together to make advanced robotics part of everyday life.</span><span
+                        lang="zh-Hant">我們畢業於美國康奈爾大學（Cornell
+                        University）並取得機器人學博士學位。過去十多年來，我們深耕於美國矽谷及頂尖科技重鎮，專注於機器人軟硬體系統的開發。從在初創企業中帶領團隊實現技術的「從零到一」，到在跨國企業與科技巨頭（如
+                        Johnson &amp; Johnson 及 Alphabet 旗下的
+                        Intrinsic）中推動產品的規模化與商業落地，我們的足跡橫跨了醫療手術、智慧農業、工業製造及生活服務等多個領域。我們將這些橫跨學術界與產業界的寶貴經驗匯聚於此，致力於將尖端的機器人技術真正融入並改變大眾的日常生活。</span>
+                </p>
+            </div>
+
+            <div>
+                <h2 class="text-2xl font-bold text-slate-800 mb-1"><span lang="en">The Value We Bring</span><span
+                        lang="zh-Hant">我們能帶來的價值</span></h2>
+                <p>
+                    <span lang="en">Our team brings more than 15 years of robotics research, development, and deployment
+                        experience, specializing in motion planning, robot-arm control, algorithm development, and
+                        low-level hardware and software integration. We combine deep technical expertise with commercial
+                        experience: we know how to rapidly iterate prototypes with limited resources at a startup and
+                        how to build highly reliable systems for large enterprises. From system architecture and
+                        hardware-in-the-loop testing to seamless integration into real customer environments, we can
+                        turn concepts into mature products ready for commercial use.</span><span
+                        lang="zh-Hant">我們團隊擁有超過十五年的機械人研發與實際部署經驗，專精於運動規劃、機械臂控制、演算法開發及底層軟硬件整合。我們不僅具備尖端的技術研發基礎，更擁有商業實戰觸覺。我們深明如何在初創環境中以有限資源快速迭代開發原型，同時亦懂得為大型企業建立高可靠性系統。從架構設計、硬件在環測試到終端客戶場景的無縫整合，我們擁有將概念轉化為成熟產品的完整技術能力，確保解決方案能真正落實商業化應用。</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- Team Section: Reduced grid gaps -->
+        <section class="grid grid-cols-2 gap-6 print:gap-4">
+
+            <!-- Member 1: Catherine Wong -->
+            <!-- Reduced padding inside cards -->
+            <div
+                class="bg-white rounded-3xl p-5 print:p-2 shadow-sm border border-slate-100 print:border-none print:shadow-none hover:shadow-md transition-shadow duration-300">
+                <h3
+                    class="text-2xl md:text-3xl font-bold text-slate-900 mb-4 print:mb-2 pb-2 border-b border-slate-100">
+                    Catherine Wong</h3>
+
+                <!-- Reduced spacing between experiences -->
+                <div class="space-y-5 print:space-y-3">
+                    <!-- Experience 1 (Image Left) -->
+                    <div class="flex items-center gap-3 print:gap-2">
+                        <img src="catresearchimage.jpg" alt="Catherine Experience 1"
+                            class="w-1/3 aspect-square rounded-full object-cover flex-shrink-0 shadow-sm">
+                        <div class="flex-1 text-left">
+                            <h4 class="font-semibold text-slate-800 text-lg"><span lang="en">Robotics
+                                    Research</span><span lang="zh-Hant">機器人研究</span></h4>
+                            <p class="text-sm text-slate-500 mt-0.5">2013 - 2018<br><span lang="en">PhD in Robotics,
+                                    Cornell University</span><span lang="zh-Hant">康奈爾大學機器人學博士</span></p>
+                        </div>
+                    </div>
+                    <!-- Experience 2 (Image Right) -->
+                    <div class="flex items-center gap-3 print:gap-2">
+                        <div class="flex-1 text-right">
+                            <h4 class="font-semibold text-slate-800 text-lg"><span lang="en">Automated Agricultural
+                                    Robotics</span><span lang="zh-Hant">自動化農業機器人</span></h4>
+                            <p class="text-sm text-slate-500 mt-0.5">2018 - 2021<br>Iron Ox Inc.</p>
+                        </div>
+                        <img src="ironoximage.jpg" alt="Catherine Experience 2"
+                            class="w-1/3 aspect-square rounded-full object-cover flex-shrink-0 shadow-sm">
+                    </div>
+                    <!-- Experience 3 (Image Left) -->
+                    <div class="flex items-center gap-3 print:gap-2">
+                        <img src="aurisimage.jpg" alt="Catherine Experience 3"
+                            class="w-1/3 aspect-square rounded-full object-cover flex-shrink-0 shadow-sm">
+                        <div class="flex-1 text-left">
+                            <h4 class="font-semibold text-slate-800 text-lg"><span lang="en">High-Precision Pulmonary
+                                    Medical Robotics</span><span lang="zh-Hant">高精度肺部醫療機器人</span></h4>
+                            <p class="text-sm text-slate-500 mt-0.5">2021 - 2023<br>Auris Health Inc.</p>
+                        </div>
+                    </div>
+                    <!-- Experience 4 (Image Right) -->
+                    <div class="flex items-center gap-3 print:gap-2">
+                        <div class="flex-1 text-right">
+                            <h4 class="font-semibold text-slate-800 text-lg"><span lang="en">Humanoid Massage
+                                    Robotics</span><span lang="zh-Hant">擬人按摩機器人</span></h4>
+                            <p class="text-sm text-slate-500 mt-0.5">2023 - 2025<br>Aescape Inc.</p>
+                        </div>
+                        <img src="aescapeimage.jpg" alt="Catherine Experience 4"
+                            class="w-1/3 aspect-square rounded-full object-cover flex-shrink-0 shadow-sm">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Member 2: Jim Jing -->
+            <!-- Reduced padding inside cards -->
+            <div
+                class="bg-white rounded-3xl p-5 print:p-2 shadow-sm border border-slate-100 print:border-none print:shadow-none hover:shadow-md transition-shadow duration-300">
+                <h3
+                    class="text-2xl md:text-3xl font-bold text-slate-900 mb-4 print:mb-2 pb-2 border-b border-slate-100">
+                    Jim Jing</h3>
+
+                <!-- Reduced spacing between experiences -->
+                <div class="space-y-5 print:space-y-3">
+                    <!-- Experience 1 (Image Left) -->
+                    <div class="flex items-center gap-3 print:gap-2">
+                        <img src="jimresearchimage.jpg" alt="Jim Experience 1"
+                            class="w-1/3 aspect-square rounded-full object-cover flex-shrink-0 shadow-sm">
+                        <div class="flex-1 text-left">
+                            <h4 class="font-semibold text-slate-800 text-lg"><span lang="en">Modular
+                                    Robotics</span><span lang="zh-Hant">模組化機器人</span></h4>
+                            <p class="text-sm text-slate-500 mt-0.5">2013 - 2018<br><span lang="en">PhD in Robotics,
+                                    Cornell University</span><span lang="zh-Hant">康奈爾大學機器人學博士</span></p>
+                        </div>
+                    </div>
+                    <!-- Experience 2 (Image Right) -->
+                    <div class="flex items-center gap-3 print:gap-2">
+                        <div class="flex-1 text-right">
+                            <h4 class="font-semibold text-slate-800 text-lg"><span lang="en">High-Precision Dental
+                                    Robotics</span><span lang="zh-Hant">高精度牙科醫療機器人</span></h4>
+                            <p class="text-sm text-slate-500 mt-0.5">2018 - 2019<br>Neocis Inc.</p>
+                        </div>
+                        <img src="neocisimage.jpg" alt="Jim Experience 2"
+                            class="w-1/3 aspect-square rounded-full object-cover flex-shrink-0 shadow-sm">
+                    </div>
+                    <!-- Experience 3 (Image Left) -->
+                    <div class="flex items-center gap-3 print:gap-2">
+                        <img src="vicariousimage.jpg" alt="Jim Experience 3"
+                            class="w-1/3 aspect-square rounded-full object-cover flex-shrink-0 shadow-sm">
+                        <div class="flex-1 text-left">
+                            <h4 class="font-semibold text-slate-800 text-lg"><span lang="en">Automated Industrial
+                                    Robotics</span><span lang="zh-Hant">自動化工業機器人</span></h4>
+                            <p class="text-sm text-slate-500 mt-0.5">2019 - 2022<br>Vicarious</p>
+                        </div>
+                    </div>
+                    <!-- Experience 4 (Image Right) -->
+                    <div class="flex items-center gap-3 print:gap-2">
+                        <div class="flex-1 text-right">
+                            <h4 class="font-semibold text-slate-800 text-lg"><span lang="en">Automated Industrial
+                                    Robotics</span><span lang="zh-Hant">自動化工業機器人</span></h4>
+                            <p class="text-sm text-slate-500 mt-0.5">2022 - 2025<br>Intrinsic (Google)</p>
+                        </div>
+                        <img src="intrinsicimage.jpg" alt="Jim Experience 4"
+                            class="w-1/3 aspect-square rounded-full object-cover flex-shrink-0 shadow-sm">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+</body>
+
+</html>

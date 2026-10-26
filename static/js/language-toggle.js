@@ -8,12 +8,32 @@
         },
     };
     const localizedPageTitles = {
-        "/": { en: "Tinkergrass", "zh-Hant": "元野有限公司" },
+        "/": {
+            en: "Core Capabilities & Services | Tinkergrass",
+            "zh-Hant": "核心技術與服務 | 元野有限公司",
+        },
     };
+    const frameObservers = new WeakMap();
+
+    function syncPageFrames(language) {
+        document.querySelectorAll("[data-page-frame]").forEach((frame) => {
+            if (!(frame instanceof HTMLIFrameElement)) return;
+            const frameDocument = frame.contentDocument;
+            const frameRoot = frameDocument?.documentElement;
+            if (!frameRoot) return;
+
+            frameRoot.lang = language;
+            frame.style.height = `${Math.max(
+                frameRoot.scrollHeight,
+                frameDocument.body?.scrollHeight ?? 0,
+            )}px`;
+        });
+    }
 
     function applyLanguage(language) {
         const selected = supportedLanguages.includes(language) ? language : "en";
         document.documentElement.lang = selected;
+        syncPageFrames(selected);
 
         document.querySelectorAll("[data-language-toggle]").forEach((button) => {
             button.textContent = selected === "en" ? "中文" : "English";
@@ -41,6 +61,31 @@
     }
 
     function initializeLanguageToggle() {
+        document.querySelectorAll("[data-page-frame]").forEach((frame) => {
+            if (!(frame instanceof HTMLIFrameElement)) return;
+
+            const updateFrame = () => {
+                syncPageFrames(document.documentElement.lang);
+                const frameDocument = frame.contentDocument;
+                const frameRoot = frameDocument?.documentElement;
+                if (!frameDocument || !frameRoot) return;
+                frameObservers.get(frame)?.disconnect();
+                const observer = new ResizeObserver(() => {
+                    syncPageFrames(document.documentElement.lang);
+                });
+                observer.observe(frameRoot);
+                if (frameDocument.body) observer.observe(frameDocument.body);
+                frameObservers.set(frame, observer);
+                frameDocument.querySelectorAll("img").forEach((image) => {
+                    image.addEventListener("load", () => syncPageFrames(document.documentElement.lang), { once: true });
+                });
+                frameDocument.fonts?.ready.then(() => syncPageFrames(document.documentElement.lang));
+            };
+
+            frame.addEventListener("load", updateFrame);
+            updateFrame();
+        });
+
         applyLanguage(localStorage.getItem(storageKey) || "en");
 
         document.querySelectorAll("[data-language-toggle]").forEach((button) => {

@@ -140,6 +140,20 @@ html[lang="zh-Hant"] [lang="en"] {
     color: #17232b;
 }
 
+.source-pages {
+    width: 100%;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.source-page-frame {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+    border: 0;
+    background: #f8fafc;
+}
+
 .company-page {
     max-width: 72rem;
     margin: 2rem auto;

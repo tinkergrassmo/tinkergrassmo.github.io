@@ -1,5 +1,6 @@
 baseURL = 'https://tinkergrassmo.github.io/'
 title = 'Tinkergrass'
+staticDir = ["static", "assets/images"]
 
 # Set up theme module
 [module]
