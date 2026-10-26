@@ -21,19 +21,3 @@ privacy_policy = "https://policies.google.com/privacy"
 # To strictly enforce dark mode like the rendering, you might need
 # custom CSS or theme configuration, but this gets you close.
 darkModeMenu = true
-
-# --- Top Navigation Menu (Tabs) ---
-# This defines the four tabs seen in the rendering.
-[menu]
-[[menu.main]]
-name = "Home"
-weight = 10
-url = "/"
-[[menu.main]]
-name = "About"
-weight = 20
-url = "/about/"
-[[menu.main]]
-name = "Contact"
-weight = 30
-url = "/contact/"

@@ -45,7 +45,7 @@ npm install
 Start the Hugo server, including draft pages (`-D`):
 
 ```bash
-hugo server -D
+hugo server --source <path-to>/tinkergrassmo.github.io --port 1316 --renderToMemory --disableFastRender --disableLiveReload
 ```
 
 **4. View the site:**
