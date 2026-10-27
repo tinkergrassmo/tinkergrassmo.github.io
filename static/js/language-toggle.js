@@ -9,8 +9,8 @@
     };
     const localizedPageTitles = {
         "/": {
-            en: "Tinkergrass Ltd. Co.",
-            "zh-Hant": "元野有限公司",
+            en: "元野有限公司 Tinkergrass",
+            "zh-Hant": "元野有限公司 Tinkergrass",
         },
     };
     const frameObservers = new WeakMap();

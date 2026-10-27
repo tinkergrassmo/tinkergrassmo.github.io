@@ -1,5 +1,5 @@
 ---
-title: "元野有限公司"
+title: "元野有限公司 Tinkergrass"
 description: "AI and robotics consulting, custom solutions, and system optimization."
 ---
 
@@ -20,4 +20,4 @@ description: "AI and robotics consulting, custom solutions, and system optimizat
     ></iframe>
 </main>
 <button type="button" class="language-toggle" data-language-toggle aria-label="Switch language">中文</button>
-<script src="/js/language-toggle.js" defer></script>
+<script src="/js/language-toggle.js?v=20261027" defer></script>
