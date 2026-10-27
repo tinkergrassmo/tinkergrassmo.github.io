@@ -11,6 +11,7 @@ description: "AI and robotics consulting, custom solutions, and system optimizat
         title="Core Capabilities and Services"
         loading="eager"
     ></iframe>
+    <div class="source-page-spacer" aria-hidden="true"></div>
     <iframe
         class="source-page-frame"
         data-page-frame
@@ -20,4 +21,4 @@ description: "AI and robotics consulting, custom solutions, and system optimizat
     ></iframe>
 </main>
 <button type="button" class="language-toggle" data-language-toggle aria-label="Switch language">中文</button>
-<script src="/js/language-toggle.js?v=20261027" defer></script>
+<script src="/js/language-toggle.js?v=20261027-2" defer></script>

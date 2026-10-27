@@ -23,10 +23,7 @@
             if (!frameRoot) return;
 
             frameRoot.lang = language;
-            frame.style.height = `${Math.max(
-                frameRoot.scrollHeight,
-                frameDocument.body?.scrollHeight ?? 0,
-            )}px`;
+            frame.style.height = `${frameDocument.body?.scrollHeight ?? frameRoot.scrollHeight}px`;
         });
     }
 
@@ -34,6 +31,7 @@
         const selected = supportedLanguages.includes(language) ? language : "en";
         document.documentElement.lang = selected;
         syncPageFrames(selected);
+        requestAnimationFrame(() => syncPageFrames(selected));
 
         document.querySelectorAll("[data-language-toggle]").forEach((button) => {
             button.textContent = selected === "en" ? "中文" : "English";
@@ -43,7 +41,7 @@
             );
         });
 
-        const pageTitle = document.querySelector(".td-content > h1");
+        const pageTitle = document.querySelector(".td-content > hg");
         if (pageTitle && location.pathname === "/") {
             pageTitle.textContent = selected === "en" ? "Core Capabilities & Services" : "核心技術與服務";
         }
