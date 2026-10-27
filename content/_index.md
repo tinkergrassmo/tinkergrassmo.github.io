@@ -1,5 +1,5 @@
 ---
-title: "Core Capabilities & Services"
+title: "元野有限公司"
 description: "AI and robotics consulting, custom solutions, and system optimization."
 ---
 

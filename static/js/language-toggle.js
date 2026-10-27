@@ -9,8 +9,8 @@
     };
     const localizedPageTitles = {
         "/": {
-            en: "Core Capabilities & Services | Tinkergrass",
-            "zh-Hant": "核心技術與服務 | 元野有限公司",
+            en: "Tinkergrass Ltd. Co.",
+            "zh-Hant": "元野有限公司",
         },
     };
     const frameObservers = new WeakMap();
