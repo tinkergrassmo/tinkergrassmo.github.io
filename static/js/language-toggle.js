@@ -15,6 +15,38 @@
     };
     const frameObservers = new WeakMap();
 
+    function scalePageFramesForPrint() {
+        document.querySelectorAll("[data-page-frame]").forEach((frame) => {
+            if (!(frame instanceof HTMLIFrameElement)) return;
+            const frameDocument = frame.contentDocument;
+            const frameBody = frameDocument?.body;
+            if (!frameDocument || !frameBody) return;
+
+            frameBody.style.transform = "";
+            frameBody.style.transformOrigin = "";
+            const contentHeight = frameBody.scrollHeight;
+            const availableHeight = frame.getBoundingClientRect().height;
+            if (contentHeight <= 0 || availableHeight <= 0) return;
+
+            const scale = Math.min(1, availableHeight / contentHeight);
+            frameBody.style.transform = `scale(${scale})`;
+            frameBody.style.transformOrigin = "top center";
+        });
+    }
+
+    function restorePageFramesAfterPrint() {
+        document.querySelectorAll("[data-page-frame]").forEach((frame) => {
+            if (!(frame instanceof HTMLIFrameElement)) return;
+            const frameBody = frame.contentDocument?.body;
+            if (!frameBody) return;
+            frameBody.style.transform = "";
+            frameBody.style.transformOrigin = "";
+        });
+    }
+
+    window.addEventListener("beforeprint", scalePageFramesForPrint);
+    window.addEventListener("afterprint", restorePageFramesAfterPrint);
+
     function syncPageFrames(language) {
         document.querySelectorAll("[data-page-frame]").forEach((frame) => {
             if (!(frame instanceof HTMLIFrameElement)) return;

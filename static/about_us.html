@@ -39,6 +39,17 @@
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
+
+            .team-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            .team-grid>div {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
         }
 
         p {
@@ -95,7 +106,7 @@
         </section>
 
         <!-- Team Section: Reduced grid gaps -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 print:gap-4">
+        <section class="team-grid grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 print:gap-4">
 
             <!-- Member 1: Catherine Wong -->
             <!-- Reduced padding inside cards -->
