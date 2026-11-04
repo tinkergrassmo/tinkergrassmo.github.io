@@ -7,7 +7,7 @@ description: "AI and robotics consulting, custom solutions, and system optimizat
     <iframe
         class="source-page-frame"
         data-page-frame
-        src="/core_capabilities_and_services.html?v=20261104-4"
+        src="/core_capabilities_and_services.html?v=20261104-6"
         title="Core Capabilities and Services"
         loading="eager"
     ></iframe>
@@ -15,7 +15,7 @@ description: "AI and robotics consulting, custom solutions, and system optimizat
     <iframe
         class="source-page-frame"
         data-page-frame
-        src="/about_us.html"
+        src="/about_us.html?v=20261104-1"
         title="About Us"
         loading="eager"
     ></iframe>

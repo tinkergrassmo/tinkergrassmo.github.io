@@ -412,7 +412,7 @@ html[lang="zh-Hant"] [lang="en"] {
 @media print {
     @page {
         size: A4;
-        margin: 10mm;
+        margin: 5mm;
     }
 
     .language-toggle,
@@ -428,7 +428,7 @@ html[lang="zh-Hant"] [lang="en"] {
 
     .source-page-frame {
         width: 100%;
-        height: 277mm !important;
+        height: 287mm !important;
         min-height: 0;
         break-inside: avoid;
         page-break-inside: avoid;
