@@ -34,8 +34,31 @@
             }
 
             main {
+                /* Adjust to 0.9 for smaller text or 1.1 for larger text. */
+                --about-print-text-scale: 1;
                 max-width: none !important;
                 padding: 6mm !important;
+            }
+
+            main>header h1 {
+                font-size: calc(36px * var(--about-print-text-scale)) !important;
+            }
+
+            main>section.w-full h2,
+            .team-grid h3 {
+                font-size: calc(24px * var(--about-print-text-scale)) !important;
+            }
+
+            main>section.w-full p {
+                font-size: calc(18px * var(--about-print-text-scale)) !important;
+            }
+
+            .team-grid h4 {
+                font-size: calc(18px * var(--about-print-text-scale)) !important;
+            }
+
+            .team-grid p {
+                font-size: calc(14px * var(--about-print-text-scale)) !important;
             }
 
             /* Ensures images and colors print clearly */

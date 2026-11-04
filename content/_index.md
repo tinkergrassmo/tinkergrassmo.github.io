@@ -15,7 +15,7 @@ description: "AI and robotics consulting, custom solutions, and system optimizat
     <iframe
         class="source-page-frame"
         data-page-frame
-        src="/about_us.html?v=20261104-1"
+        src="/about_us.html?v=20261104-3"
         title="About Us"
         loading="eager"
     ></iframe>
