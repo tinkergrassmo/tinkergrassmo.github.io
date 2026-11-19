@@ -4,6 +4,12 @@ description: "AI and robotics consulting, custom solutions, and system optimizat
 ---
 
 <main class="source-pages">
+    <nav class="site-quick-links" aria-label="Site pages">
+        <a class="site-page-switch" href="/blog/" data-label-en="Blog" data-label-zh="網誌" aria-label="Blog" title="Blog">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5zM4 5.5v16M8 7h8M8 11h8M8 15h5" /></svg>
+            <span lang="en">Blog</span><span lang="zh-Hant">網誌</span>
+        </a>
+    </nav>
     <iframe
         class="source-page-frame"
         data-page-frame

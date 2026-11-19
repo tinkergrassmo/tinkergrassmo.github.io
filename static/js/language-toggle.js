@@ -6,11 +6,35 @@
             en: "AI and robotics consulting, custom solutions, and system optimization.",
             "zh-Hant": "提供 AI 與機器人顧問、客製化解決方案及系統效能優化服務。",
         },
+        "/blog/": {
+            en: "Notes, experiments, and updates from Tinkergrass.",
+            "zh-Hant": "元野的技術筆記、實驗與最新消息。",
+        },
+        "/blog/robotics-motion-planning/": {
+            en: "Three 2x-speed automated pick-and-place demonstrations of the SO-101 robotic arm sorting and kitting travel toiletries.",
+            "zh-Hant": "以 2 倍速呈現 SO-101 機械手臂的三段自動化取放演示，示範旅行裝個人護理用品的分揀與組裝。",
+        },
+        "/blog/micro-fulfillment-so-101-video/": {
+            en: "Our first end-to-end autonomous demo is live. Watch the SO-101 robotic arm pick, sort, and kit travel toiletries.",
+            "zh-Hant": "我們的首個端到端自主展示正式上線。觀看 SO-101 機械手臂自主抓取、分揀並組裝旅行裝護理用品。",
+        },
     };
     const localizedPageTitles = {
         "/": {
             en: "元野有限公司 Tinkergrass",
             "zh-Hant": "元野有限公司 Tinkergrass",
+        },
+        "/blog/": {
+            en: "Blog",
+            "zh-Hant": "網誌",
+        },
+        "/blog/robotics-motion-planning/": {
+            en: "Micro-Fulfillment: SO-101 Automated Kitting Demo",
+            "zh-Hant": "小型自動化配貨：SO-101 智慧組裝演示",
+        },
+        "/blog/micro-fulfillment-so-101-video/": {
+            en: "Milestone One: Autonomous Pick-and-Place on the SO-101 Arm",
+            "zh-Hant": "首個里程碑：SO-101 機械手臂實現自主抓取與配貨",
         },
     };
     const frameObservers = new WeakMap();
@@ -73,9 +97,36 @@
             );
         });
 
-        const pageTitle = document.querySelector(".td-content > hg");
-        if (pageTitle && location.pathname === "/") {
-            pageTitle.textContent = selected === "en" ? "Core Capabilities & Services" : "核心技術與服務";
+        document.querySelectorAll(".site-page-switch").forEach((link) => {
+            const label = link.dataset[`label${selected === "en" ? "En" : "Zh"}`];
+            if (label) {
+                link.setAttribute("aria-label", label);
+                link.setAttribute("title", label);
+            }
+        });
+
+        const pageTitle = document.querySelector(".td-content > h1");
+        const localizedTitle = localizedPageTitles[location.pathname]?.[selected];
+        if (pageTitle && localizedTitle) {
+            pageTitle.textContent = localizedTitle;
+            const breadcrumbTitle = document.querySelector('.td-breadcrumbs [aria-current="page"]');
+            if (breadcrumbTitle) breadcrumbTitle.textContent = localizedTitle;
+        }
+        document.querySelectorAll('.td-breadcrumbs a[href="/blog/"]').forEach((link) => {
+            link.textContent = selected === "en" ? "Blog" : "網誌";
+        });
+
+        const articleDate = document.querySelector(".td-byline time[datetime]");
+        if (articleDate) {
+            const date = new Date(`${articleDate.dateTime.slice(0, 10)}T00:00:00`);
+            if (!Number.isNaN(date.getTime())) {
+                articleDate.textContent = new Intl.DateTimeFormat(selected === "en" ? "en-US" : "zh-Hant", {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                }).format(date);
+            }
         }
 
         const description = document.querySelector('meta[name="description"]');
@@ -86,7 +137,7 @@
             if (visibleDescription) visibleDescription.textContent = pageDescriptions[selected];
         }
 
-        document.title = localizedPageTitles[location.pathname]?.[selected] ?? localizedPageTitles["/"][selected];
+        if (localizedTitle) document.title = `${localizedTitle} | Tinkergrass`;
         localStorage.setItem(storageKey, selected);
     }
 

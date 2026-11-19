@@ -1,0 +1,62 @@
+{{ define "main" -}}
+
+<div class="td-content">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}{{ . }}{{ end -}}
+</div>
+{{ if (and .Parent .Parent.IsHome) -}}
+{{ $.Scratch.Set "blog-pages" (where .Site.RegularPages "Section" .Section) -}}
+{{ else -}}
+{{ $.Scratch.Set "blog-pages" .Pages -}}
+{{ end -}}
+
+{{ if .Pages -}}
+<div class="td-blog-posts">
+    {{ $pager := .Paginate (( $.Scratch.Get "blog-pages").GroupByDate "2006" ) -}}
+    {{ range $pager.PageGroups -}}
+    <ul class="td-blog-posts-list">
+        {{ range .Pages -}}
+        {{ $fallbackSummary := .Description | default .Title -}}
+        {{ $titleEn := .Params.title_en | default .Title -}}
+        {{ $titleZh := .Params.title_zh | default .Title -}}
+        {{ $summaryEn := .Params.summary_en | default $fallbackSummary -}}
+        {{ $summaryZh := .Params.summary_zh | default $fallbackSummary -}}
+        {{ $weekdayNamesZh := dict "Monday" "星期一" "Tuesday" "星期二" "Wednesday" "星期三" "Thursday" "星期四" "Friday" "星期五"
+        "Saturday" "星期六" "Sunday" "星期日" -}}
+        {{ $weekdayZh := index $weekdayNamesZh (.Date.Format "Monday") -}}
+        {{ $thumbnail := .Resources.GetMatch "media/thumbnail.avif" -}}
+        <li class="td-blog-posts-list__item blog-post-card{{ if $thumbnail }} blog-post-card--has-thumbnail{{ end }}">
+            {{ with $thumbnail -}}
+            <div class="blog-post-card__thumbnail" aria-hidden="true">
+                <img src="{{ .RelPermalink }}" alt="" loading="lazy">
+            </div>
+            {{ end -}}
+            <div class="td-blog-posts-list__body blog-post-card__body">
+                <h5 class="mt-0 mb-1"><a href="{{ .RelPermalink }}"><span lang="en">{{ $titleEn }}</span><span
+                            lang="zh-Hant">{{ $titleZh }}</span></a></h5>
+                <p class="mb-2 mb-md-3"><small class="text-body-secondary">
+                        <span lang="en">{{ .Date.Format ($.Param "time_format_blog") }} {{ T "ui_in" }} {{
+                            .CurrentSection.LinkTitle }}</span>
+                        <span lang="zh-Hant">{{ .Date.Format "2006年1月2日" }}（{{ $weekdayZh }}）刊於網誌</span>
+                    </small></p>
+                <header class="article-meta">
+                    {{- partial "taxonomy_terms_article_wrapper.html" . -}}
+                    {{ if (and (not .Params.hide_readingtime) (.Site.Params.ui.readingtime.enable)) -}}
+                    {{- partial "reading-time.html" . -}}
+                    {{ end -}}
+                </header>
+                <p class="pt-0 mt-0"><span lang="en">{{ $summaryEn }}</span><span lang="zh-Hant">{{ $summaryZh }}</span>
+                </p>
+                <p class="pt-0"><a href="{{ .RelPermalink }}"><span lang="en">{{ T "ui_read_more" }}</span><span
+                            lang="zh-Hant">閱讀更多</span></a></p>
+            </div>
+        </li>
+        {{ end -}}
+    </ul>
+    {{ end -}}
+</div>
+<div class="td-blog-posts__pagination">
+    {{ partial "pagination.html" . -}}
+</div>
+{{- end -}}
+{{ end -}}
