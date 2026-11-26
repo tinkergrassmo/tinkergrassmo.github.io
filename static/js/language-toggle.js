@@ -10,13 +10,9 @@
             en: "Notes, experiments, and updates from Tinkergrass.",
             "zh-Hant": "元野的技術筆記、實驗與最新消息。",
         },
-        "/blog/robotics-motion-planning/": {
-            en: "Three 2x-speed automated pick-and-place demonstrations of the SO-101 robotic arm sorting and kitting travel toiletries.",
-            "zh-Hant": "以 2 倍速呈現 SO-101 機械手臂的三段自動化取放演示，示範旅行裝個人護理用品的分揀與組裝。",
-        },
-        "/blog/micro-fulfillment-so-101-video/": {
-            en: "Our first end-to-end autonomous demo is live. Watch the SO-101 robotic arm pick, sort, and kit travel toiletries.",
-            "zh-Hant": "我們的首個端到端自主展示正式上線。觀看 SO-101 機械手臂自主抓取、分揀並組裝旅行裝護理用品。",
+        "/blog/micro-fulfillment-video/": {
+            en: "Our first official demo: a robotic arm sorting and packing travel toiletries on its own.",
+            "zh-Hant": "我們的首個官方實機展示：機械臂獨立完成旅行洗漱用品的分類與打包。",
         },
     };
     const localizedPageTitles = {
@@ -28,13 +24,9 @@
             en: "Blog",
             "zh-Hant": "網誌",
         },
-        "/blog/robotics-motion-planning/": {
-            en: "Micro-Fulfillment: SO-101 Automated Kitting Demo",
-            "zh-Hant": "小型自動化配貨：SO-101 智慧組裝演示",
-        },
-        "/blog/micro-fulfillment-so-101-video/": {
-            en: "Milestone One: Autonomous Pick-and-Place on the SO-101 Arm",
-            "zh-Hant": "首個里程碑：SO-101 機械手臂實現自主抓取與配貨",
+        "/blog/micro-fulfillment-video/": {
+            en: "Milestone One: Autonomous Toiletry Organization",
+            "zh-Hant": "機械臂自主整理旅行用品",
         },
     };
     const frameObservers = new WeakMap();
