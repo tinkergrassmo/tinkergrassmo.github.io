@@ -25,7 +25,7 @@
             "zh-Hant": "網誌",
         },
         "/blog/micro-fulfillment-video/": {
-            en: "Milestone One: Autonomous Toiletry Organization",
+            en: "Autonomous Toiletry Organization",
             "zh-Hant": "機械臂自主整理旅行用品",
         },
     };
