@@ -44,13 +44,22 @@ jobs:
           node-version: '24'
 
       - name: Install Node Dependencies
-        run: npm ci
+        run: |
+          npm ci
+          echo "$GITHUB_WORKSPACE/node_modules/.bin" >> "$GITHUB_PATH"
 
       - name: Setup Hugo Extended
         uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: 'latest'
           extended: true
+
+      - name: Setup Dart Sass
+        run: |
+          DART_SASS_VERSION="1.108.2"
+          curl -fsSL "https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz" -o "$RUNNER_TEMP/dart-sass.tar.gz"
+          tar -xzf "$RUNNER_TEMP/dart-sass.tar.gz" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/dart-sass" >> "$GITHUB_PATH"
 
       - name: Setup GitHub Pages
         id: pages
