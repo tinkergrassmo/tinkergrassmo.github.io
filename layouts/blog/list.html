@@ -24,7 +24,7 @@
         {{ $weekdayNamesZh := dict "Monday" "星期一" "Tuesday" "星期二" "Wednesday" "星期三" "Thursday" "星期四" "Friday" "星期五"
         "Saturday" "星期六" "Sunday" "星期日" -}}
         {{ $weekdayZh := index $weekdayNamesZh (.Date.Format "Monday") -}}
-        {{ $thumbnail := .Resources.GetMatch "media/thumbnail.avif" -}}
+        {{ $thumbnail := .Resources.GetMatch "media/thumbnail.jpg" -}}
         <li class="td-blog-posts-list__item blog-post-card{{ if $thumbnail }} blog-post-card--has-thumbnail{{ end }}">
             {{ with $thumbnail -}}
             <div class="blog-post-card__thumbnail" aria-hidden="true">

@@ -160,7 +160,7 @@
             updateFrame();
         });
 
-        applyLanguage(localStorage.getItem(storageKey) || "en");
+        applyLanguage(localStorage.getItem(storageKey) || "zh-Hant");
 
         document.querySelectorAll("[data-language-toggle]").forEach((button) => {
             button.addEventListener("click", () => {

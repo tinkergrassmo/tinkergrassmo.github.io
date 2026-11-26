@@ -233,24 +233,15 @@ test("Home page (/) switches language, iframe lang, metadata, and quick links", 
     iframes: frames,
   });
 
-  // Starts in English
-  assert.equal(document.documentElement.lang, "en");
-  assert.equal(toggleButton.textContent, "中文");
-  assert.equal(frame1Doc.documentElement.lang, "en");
-  assert.equal(frame2Doc.documentElement.lang, "en");
-  assert.equal(pageSwitch.getAttribute("aria-label"), "Blog");
-
-  // Switch to Traditional Chinese
-  toggleButton.click();
+  // Starts in Traditional Chinese by default
   assert.equal(document.documentElement.lang, "zh-Hant");
-  assert.equal(storage.get("tinkergrass-language"), "zh-Hant");
   assert.equal(toggleButton.textContent, "English");
   assert.equal(frame1Doc.documentElement.lang, "zh-Hant");
   assert.equal(frame2Doc.documentElement.lang, "zh-Hant");
   assert.equal(pageSwitch.getAttribute("aria-label"), "網誌");
   assert.match(metaDescription.content, /[\u4e00-\u9fff]/);
 
-  // Switch back to English
+  // Switch to English
   toggleButton.click();
   assert.equal(document.documentElement.lang, "en");
   assert.equal(storage.get("tinkergrass-language"), "en");
@@ -259,6 +250,16 @@ test("Home page (/) switches language, iframe lang, metadata, and quick links", 
   assert.equal(frame2Doc.documentElement.lang, "en");
   assert.equal(pageSwitch.getAttribute("aria-label"), "Blog");
   assert.doesNotMatch(metaDescription.content, /[\u4e00-\u9fff]/);
+
+  // Switch back to Traditional Chinese
+  toggleButton.click();
+  assert.equal(document.documentElement.lang, "zh-Hant");
+  assert.equal(storage.get("tinkergrass-language"), "zh-Hant");
+  assert.equal(toggleButton.textContent, "English");
+  assert.equal(frame1Doc.documentElement.lang, "zh-Hant");
+  assert.equal(frame2Doc.documentElement.lang, "zh-Hant");
+  assert.equal(pageSwitch.getAttribute("aria-label"), "網誌");
+  assert.match(metaDescription.content, /[\u4e00-\u9fff]/);
 });
 
 test("Blog index (/blog/) switches heading, description, title, and home link", () => {
@@ -286,10 +287,6 @@ test("Blog index (/blog/) switches heading, description, title, and home link", 
     },
   });
 
-  assert.equal(h1.textContent, "Blog");
-  assert.equal(document.title, "Blog | Tinkergrass");
-
-  toggleButton.click();
   assert.equal(document.documentElement.lang, "zh-Hant");
   assert.equal(h1.textContent, "網誌");
   assert.equal(document.title, "網誌 | Tinkergrass");
@@ -303,6 +300,11 @@ test("Blog index (/blog/) switches heading, description, title, and home link", 
   assert.equal(document.title, "Blog | Tinkergrass");
   assert.doesNotMatch(lead.textContent, /[\u4e00-\u9fff]/);
   assert.equal(pageSwitch.getAttribute("aria-label"), "Tinkergrass home");
+
+  toggleButton.click();
+  assert.equal(document.documentElement.lang, "zh-Hant");
+  assert.equal(h1.textContent, "網誌");
+  assert.equal(document.title, "網誌 | Tinkergrass");
 });
 
 test("Every blog post has paired bilingual content and switches all fields cleanly", () => {
@@ -374,24 +376,29 @@ test("Every blog post has paired bilingual content and switches all fields clean
         },
       });
 
-      // Switch to zh-Hant
-      toggleButton.click();
+      // Starts in Traditional Chinese by default
       assert.equal(document.documentElement.lang, "zh-Hant");
-      assert.match(h1.textContent, /[\u4e00-\u9fff]/, `${pathname}: h1 did not switch to Chinese`);
-      assert.match(breadcrumbCurrent.textContent, /[\u4e00-\u9fff]/, `${pathname}: breadcrumb did not switch to Chinese`);
+      assert.match(h1.textContent, /[\u4e00-\u9fff]/, `${pathname}: h1 did not default to Chinese`);
+      assert.match(breadcrumbCurrent.textContent, /[\u4e00-\u9fff]/, `${pathname}: breadcrumb did not default to Chinese`);
       assert.equal(breadcrumbBlog.textContent, "網誌");
-      assert.match(lead.textContent, /[\u4e00-\u9fff]/, `${pathname}: lead description did not switch to Chinese`);
-      assert.match(metaDescription.content, /[\u4e00-\u9fff]/, `${pathname}: meta description did not switch to Chinese`);
-      assert.match(document.title, /[\u4e00-\u9fff]/, `${pathname}: document.title did not switch to Chinese`);
+      assert.match(lead.textContent, /[\u4e00-\u9fff]/, `${pathname}: lead description did not default to Chinese`);
+      assert.match(metaDescription.content, /[\u4e00-\u9fff]/, `${pathname}: meta description did not default to Chinese`);
+      assert.match(document.title, /[\u4e00-\u9fff]/, `${pathname}: document.title did not default to Chinese`);
 
-      // Switch back to en
+      // Switch to en
       toggleButton.click();
       assert.equal(document.documentElement.lang, "en");
-      assert.doesNotMatch(h1.textContent, /[\u4e00-\u9fff]/, `${pathname}: h1 did not switch back to English`);
+      assert.doesNotMatch(h1.textContent, /[\u4e00-\u9fff]/, `${pathname}: h1 did not switch to English`);
       assert.equal(breadcrumbBlog.textContent, "Blog");
-      assert.doesNotMatch(lead.textContent, /[\u4e00-\u9fff]/, `${pathname}: lead did not switch back to English`);
-      assert.doesNotMatch(metaDescription.content, /[\u4e00-\u9fff]/, `${pathname}: meta description did not switch back to English`);
-      assert.doesNotMatch(document.title, /[\u4e00-\u9fff]/, `${pathname}: document.title did not switch back to English`);
+      assert.doesNotMatch(lead.textContent, /[\u4e00-\u9fff]/, `${pathname}: lead did not switch to English`);
+      assert.doesNotMatch(metaDescription.content, /[\u4e00-\u9fff]/, `${pathname}: meta description did not switch to English`);
+      assert.doesNotMatch(document.title, /[\u4e00-\u9fff]/, `${pathname}: document.title did not switch to English`);
+
+      // Switch back to zh-Hant
+      toggleButton.click();
+      assert.equal(document.documentElement.lang, "zh-Hant");
+      assert.match(h1.textContent, /[\u4e00-\u9fff]/, `${pathname}: h1 did not switch back to Chinese`);
+      assert.equal(breadcrumbBlog.textContent, "網誌");
     }
   }
 });

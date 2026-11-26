@@ -27,4 +27,4 @@ description: "AI and robotics consulting, custom solutions, and system optimizat
     ></iframe>
 </main>
 <button type="button" class="language-toggle" data-language-toggle aria-label="Switch language">中文</button>
-<script src="/js/language-toggle.js?v=20261104-3" defer></script>
+<script src="/js/language-toggle.js?v=20261126-4" defer></script>
