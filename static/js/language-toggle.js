@@ -97,8 +97,9 @@
             }
         });
 
+        const currentPath = location.pathname.replace(/index\.html$/, "").replace(/\/?$/, "/");
         const pageTitle = document.querySelector(".td-content > h1");
-        const localizedTitle = localizedPageTitles[location.pathname]?.[selected];
+        const localizedTitle = localizedPageTitles[currentPath]?.[selected];
         if (pageTitle && localizedTitle) {
             pageTitle.textContent = localizedTitle;
             const breadcrumbTitle = document.querySelector('.td-breadcrumbs [aria-current="page"]');
@@ -122,7 +123,7 @@
         }
 
         const description = document.querySelector('meta[name="description"]');
-        const pageDescriptions = localizedDescriptions[location.pathname];
+        const pageDescriptions = localizedDescriptions[currentPath];
         if (pageDescriptions) {
             if (description) description.content = pageDescriptions[selected];
             const visibleDescription = document.querySelector(".td-content > .lead");
