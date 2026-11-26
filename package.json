@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "test": "node --test tests/language-toggle.test.mjs"
+  },
   "devDependencies": {
     "autoprefixer": "^10.4.27",
     "postcss": "^8.5.8",

@@ -53,6 +53,22 @@ Open your web browser and navigate to: [http://localhost:1313](https://www.googl
 
 The development server includes live-reloading. Any changes you make to the Markdown files in the `content/` directory or configuration files will automatically refresh in your browser.
 
+## Running Tests
+
+Run the language-toggle test suite using Node.js (v20+):
+
+```bash
+npm test
+```
+
+You can also run the test runner directly:
+
+```bash
+node --test tests/language-toggle.test.mjs
+```
+
+The tests in `tests/language-toggle.test.mjs` verify that switching between English (`en`) and Traditional Chinese (`zh-Hant`) updates all page content, metadata, quick links, blog posts, and embedded iframe language attributes.
+
 ## Saving and Deploying Updates
 
 This site is configured with GitHub Actions. Any changes pushed to the `main` branch will automatically build and deploy to GitHub Pages. To publish your updates, run:
