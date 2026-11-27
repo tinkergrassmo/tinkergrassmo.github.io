@@ -40,7 +40,8 @@ header,
 .td-navbar,
 .td-sidebar,
 .td-sidebar-toc,
-.td-sidebar-toggle {
+.td-sidebar-toggle,
+.td-rss-button {
     display: none !important;
 }
 
@@ -321,6 +322,7 @@ body.td-blog {
         width: min(calc(100% - 24px), 80rem);
         height: 3.75rem;
         align-items: center;
+        gap: 0.65rem;
         padding: 0.65rem 1.5rem;
         border: 0;
         border-bottom: 1px solid #dbe3e7;
@@ -329,6 +331,11 @@ body.td-blog {
 
         @media (min-width: 768px) {
             top: 5.5rem;
+        }
+
+        @media (max-width: 575px) {
+            gap: 0.5rem;
+            padding-inline: 0.85rem;
         }
     }
 
@@ -391,9 +398,16 @@ html[lang="zh-Hant"] [lang="en"] {
 .site-quick-links {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+    gap: 0.65rem;
     padding: 0.65rem 1.5rem;
     border-bottom: 1px solid #dbe3e7;
     background: #fff;
+
+    @media (max-width: 575px) {
+        gap: 0.5rem;
+        padding-inline: 0.85rem;
+    }
 
     a {
         color: #26734d;
@@ -694,6 +708,82 @@ html[lang="zh-Hant"] [lang="en"] {
 
 }
 
+.newsletter-callout {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem 1.5rem;
+    margin-top: 2rem;
+    padding: 1.35rem 1.5rem;
+    border: 1px solid #dbe3e7;
+    border-radius: 0.75rem;
+    background: #f8fafc;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+
+    &__copy {
+        flex: 1 1 20rem;
+        min-width: 0;
+    }
+
+    &__title {
+        margin: 0 0 0.35rem !important;
+        color: #0f172a !important;
+        font-size: 1.2rem;
+        font-weight: 700;
+        line-height: 1.35;
+    }
+
+    &__text {
+        margin: 0 !important;
+        color: #475569 !important;
+        font-size: 0.975rem;
+        line-height: 1.6;
+    }
+
+    &__button {
+        display: inline-flex;
+        flex: 0 0 auto;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.65rem 1.15rem;
+        border: 1px solid #26734d !important;
+        border-radius: 0.375rem;
+        background: #26734d;
+        color: #ffffff !important;
+        font-size: 0.95rem;
+        font-weight: 600;
+        line-height: 1.25;
+        text-decoration: none !important;
+        transition: background-color 0.15s ease, border-color 0.15s ease;
+
+        svg {
+            width: 1.15rem;
+            height: 1.15rem;
+            flex-shrink: 0;
+            fill: none;
+            stroke: currentColor;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 1.8;
+        }
+
+        &:hover,
+        &:focus-visible {
+            background: #174b33;
+            border-color: #174b33 !important;
+            color: #ffffff !important;
+            text-decoration: none !important;
+        }
+
+        &:focus-visible {
+            outline: 2px solid #26734d;
+            outline-offset: 2px;
+        }
+    }
+}
+
 @media print {
     @page {
         size: A4;
@@ -702,6 +792,7 @@ html[lang="zh-Hant"] [lang="en"] {
 
     .language-toggle,
     .site-quick-links,
+    .newsletter-callout,
     .source-page-spacer {
         display: none !important;
     }

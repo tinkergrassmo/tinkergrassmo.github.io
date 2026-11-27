@@ -198,6 +198,11 @@ test("CSS hides inactive language spans when html[lang] switches", () => {
 
 test("Home page (/) switches language, iframe lang, metadata, and quick links", () => {
   const toggleBtn = new FakeElement("button", { "data-language-toggle": "" }, "中文");
+  const newsletterSwitch = new FakeElement("a", {
+    href: "https://forms.gle/irPBHQtL6DU9aSbw7",
+    "data-label-en": "Subscribe to newsletter",
+    "data-label-zh": "訂閱電子報",
+  });
   const pageSwitch = new FakeElement("a", {
     href: "/blog/",
     "data-label-en": "Blog",
@@ -227,7 +232,7 @@ test("Home page (/) switches language, iframe lang, metadata, and quick links", 
     pathname: "/",
     elements: {
       toggleButtons: [toggleBtn],
-      pageSwitches: [pageSwitch],
+      pageSwitches: [newsletterSwitch, pageSwitch],
       metaDescription,
     },
     iframes: frames,
@@ -238,6 +243,7 @@ test("Home page (/) switches language, iframe lang, metadata, and quick links", 
   assert.equal(toggleButton.textContent, "English");
   assert.equal(frame1Doc.documentElement.lang, "zh-Hant");
   assert.equal(frame2Doc.documentElement.lang, "zh-Hant");
+  assert.equal(newsletterSwitch.getAttribute("aria-label"), "訂閱電子報");
   assert.equal(pageSwitch.getAttribute("aria-label"), "網誌");
   assert.match(metaDescription.content, /[\u4e00-\u9fff]/);
 
@@ -248,6 +254,7 @@ test("Home page (/) switches language, iframe lang, metadata, and quick links", 
   assert.equal(toggleButton.textContent, "中文");
   assert.equal(frame1Doc.documentElement.lang, "en");
   assert.equal(frame2Doc.documentElement.lang, "en");
+  assert.equal(newsletterSwitch.getAttribute("aria-label"), "Subscribe to newsletter");
   assert.equal(pageSwitch.getAttribute("aria-label"), "Blog");
   assert.doesNotMatch(metaDescription.content, /[\u4e00-\u9fff]/);
 
@@ -408,5 +415,50 @@ test("Static iframe pages contain both English and Traditional Chinese content",
     const html = fs.readFileSync(path.join(ROOT, file), "utf8");
     assert.match(html, /lang="en"/, `${file}: missing lang="en" elements`);
     assert.match(html, /lang="zh-Hant"/, `${file}: missing lang="zh-Hant" elements`);
+  }
+});
+
+test("Newsletter quick links and blog callout include bilingual labels and safe external link attributes", () => {
+  const newsletterUrl = "https://forms.gle/irPBHQtL6DU9aSbw7";
+  const filesWithNewsletterLink = [
+    "content/_index.md",
+    "layouts/partials/hooks/body-end.html",
+    "layouts/partials/newsletter-callout.html",
+  ];
+
+  for (const file of filesWithNewsletterLink) {
+    const html = fs.readFileSync(path.join(ROOT, file), "utf8");
+    assert.ok(html.includes(newsletterUrl), `${file}: missing newsletter URL`);
+    assert.match(html, /target="_blank"/, `${file}: missing target="_blank"`);
+    assert.match(html, /rel="noopener noreferrer"/, `${file}: missing rel="noopener noreferrer"`);
+
+    const enSpans = extractLangSpans(html, "en");
+    const zhSpans = extractLangSpans(html, "zh-Hant");
+    assert.ok(enSpans.length > 0, `${file}: missing English spans`);
+    assert.equal(enSpans.length, zhSpans.length, `${file}: mismatched en/zh-Hant span counts`);
+  }
+
+  const blogListTemplate = fs.readFileSync(path.join(ROOT, "layouts/blog/list.html"), "utf8");
+  assert.match(
+    blogListTemplate,
+    /partial\s+"newsletter-callout\.html"/,
+    "layouts/blog/list.html should render newsletter-callout.html partial",
+  );
+
+  assert.match(
+    PROJECT_SCSS,
+    /\.td-rss-button[\s\S]*?display:\s*none\s*!important;/,
+    "Expected _styles_project.scss to hide .td-rss-button",
+  );
+
+  const hugoConfig = fs.readFileSync(path.join(ROOT, "hugo.toml"), "utf8");
+  assert.match(hugoConfig, /disableKinds\s*=\s*\["RSS"\]/, "Expected hugo.toml to disable RSS output");
+
+  const blogDir = path.join(ROOT, "content/blog");
+  for (const dir of fs.readdirSync(blogDir, { withFileTypes: true }).filter((d) => d.isDirectory())) {
+    const postPath = path.join(blogDir, dir.name, "index.md");
+    if (!fs.existsSync(postPath)) continue;
+    const raw = fs.readFileSync(postPath, "utf8");
+    assert.doesNotMatch(raw, /newsletter-callout/, `${dir.name}: blog post should not embed newsletter-callout`);
   }
 });
